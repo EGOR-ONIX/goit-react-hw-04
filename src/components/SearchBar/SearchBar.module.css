@@ -1,0 +1,38 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  padding: 10px;
+
+  background-color: #a50000;
+}
+
+.form {
+  position: relative;
+
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.input {
+  width: 300px;
+  padding: 5px;
+  padding-left: 30px;
+}
+
+.btn {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 150px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
+
+  background-color: transparent;
+  border: none;
+}
