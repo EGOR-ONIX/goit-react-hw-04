@@ -1,5 +1,4 @@
 import css from "./ImageCard.module.css";
-import ImageModal from "../ImageModal/ImageModal";
 
 function ImageCard({ id, url, alt, openModal }) {
   const handleClick = () => {

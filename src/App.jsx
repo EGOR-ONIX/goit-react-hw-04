@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import GalleryApiService from "./gallery-api.js";
+
+import GalleryApiService from "./components/Service/gallery-api.js";
+
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
@@ -7,7 +9,7 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage.jsx";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.jsx";
 import ImageModal from "./components/ImageModal/ImageModal.jsx";
 
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -64,6 +66,8 @@ function App() {
   }, [searchQuery, galleryPage]);
 
   const handleSubmit = (userSearchQuery) => {
+    if (searchQuery === userSearchQuery) return;
+
     setSearchQuery("");
     setGalleryItems([]);
     setTotalImages(0);
@@ -83,7 +87,7 @@ function App() {
 
   const openModalImages = (idImages) => {
     toggleModal();
-    setCurrentImages(() => galleryItems.find((image) => image.id === idImages));
+    setCurrentImages(() => galleryItems.find((img) => img.id === idImages));
   };
 
   return (
@@ -92,9 +96,9 @@ function App() {
       {galleryItems.length > 0 && (
         <ImageGallery gallery={galleryItems} openModal={openModalImages} />
       )}
-      {galleryItems.length > 0 &&
-        galleryItems.length < totalImages &&
-        !loading && <LoadMoreBtn onClick={onLoadMore} />}
+      {galleryItems.length < totalImages && !loading && (
+        <LoadMoreBtn onClick={onLoadMore} />
+      )}
       {loading && <Loader />}
       {error && <ErrorMessage />}
       {isModalOpen && (

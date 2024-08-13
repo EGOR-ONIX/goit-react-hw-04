@@ -14,7 +14,7 @@ export default class GalleryApiService {
       client_id: API_KEY,
       query: this.searchQuery,
       page: this.page,
-      per_page: 16,
+      per_page: 12,
       orientation: "landscape",
     });
 

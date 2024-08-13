@@ -1,9 +1,10 @@
+import css from "./ImageModal.module.css";
 import { useEffect } from "react";
 import Modal from "react-modal";
 
 const customStyles = {
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    backgroundColor: "rgba(0, 0, 0, 0.75)",
   },
   content: {
     top: "50%",
@@ -12,21 +13,16 @@ const customStyles = {
     bottom: "auto",
     width: "700px",
     height: "500px",
-    padding: '0',
-    border: 'none',
+    padding: "0",
+    border: "none",
     transform: "translate(-50%, -50%)",
   },
 };
 
 Modal.setAppElement("#root");
 
-function ImageModal({
-  currentImages: {
-    urls: { regular },
-    alt_description,
-  },
-  onCloseModal,
-}) {
+function ImageModal({ currentImages, onCloseModal }) {
+  console.log(currentImages);
   useEffect(() => {
     const handleKeydown = (event) => {
       if (event.code === "Escape") {
@@ -53,7 +49,11 @@ function ImageModal({
       style={customStyles}
       onRequestClose={handleBackdropClick}
     >
-      <img src={regular} alt={alt_description} />
+      <img
+        src={currentImages.urls.regular}
+        alt={currentImages.alt_description}
+      />
+      <span className={css.likes}>Likes: {currentImages.likes}</span>
     </Modal>
   );
 }
